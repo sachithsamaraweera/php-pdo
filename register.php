@@ -17,7 +17,8 @@
     <div class="container">
         <h2 class="text-center">Register</h2>
 
-        <form action="insert.php" method="POST">
+        <
+            form action="insert.php" method="POST">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -56,7 +57,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </>
     </div>
 
 

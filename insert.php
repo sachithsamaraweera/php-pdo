@@ -1,20 +1,17 @@
 <?php
-//insert.php
+//read.php
 include_once 'connect.php';
 
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$email = $_POST['email'];
-$password = $_POST['pass'];
+$fname = mysql_fix_string($conn, $_POST['fname']);
+$password = mysql_fix_string($conn, $_POST['pass']);
+
+$sql = "SELECT * FROM users WHERE fname=$fname AND pass=$password";
 
 
-try {
-    $sql = "INSERT INTO users(first,last,email,password)
-    VALUES('$fname','$lname','$email','$password')";
-    $conn->exec($sql);
-} catch (PDOException $e) {
-    echo $sql . "<br>";
-    echo $e->getMessage();
+function mysql_fix_string($conn, $string)
+{
+    if (get_magic_quotes_gpc()) {
+        $string = stripslashes($string);
+    }
+    return $conn->quote($string);
 }
-
-header('location:register.php');
